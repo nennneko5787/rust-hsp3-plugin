@@ -1,0 +1,19 @@
+[package]
+name = "rust-hsp3-plugin"
+version = "0.1.0"
+edition = "2024"
+include = ["src/**/*", "hsp3sdk/**/*", "Cargo.toml"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.dev]
+lto = true
+
+
+[workspace.dependencies]
+hsp3sdk = { version = "3.7.0", path = "hsp3sdk", default-features = false }
+
+[dependencies]
+windows-sys = { version = "0.61.2", features = ["Win32_Foundation"] }
+hsp3sdk.workspace = true
