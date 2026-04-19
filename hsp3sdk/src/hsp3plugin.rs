@@ -12,20 +12,20 @@ pub static mut mpval: *mut PVal = std::ptr::null_mut();
 pub static mut ctx: *mut HSPCTX = std::ptr::null_mut();
 pub static mut exinfo: *mut HSPEXINFO = std::ptr::null_mut();
 
-pub unsafe fn hsp3sdk_init(info: *mut HSP3TYPEINFO) {
+pub unsafe fn hsp3sdk_init(info: *mut HSP3TYPEINFO) { unsafe {
     ctx = (*info).hspctx;
     exinfo = (*info).hspexinfo;
     TYPE_ = (*exinfo).nptype;
     VAL = (*exinfo).npval;
-}
+}}
 
-pub unsafe fn code_getprm() -> ::std::os::raw::c_int {
+pub unsafe fn code_getprm() -> ::std::os::raw::c_int { unsafe {
     let res = (*exinfo).HspFunc_prm_get.unwrap()();
     mpval = *(*exinfo).mpval;
     res
-}
+}}
 
-pub unsafe fn bms_send(bm: *mut BMSCR, x: i32, y: i32, sx: i32, sy: i32) {
+pub unsafe fn bms_send(bm: *mut BMSCR, x: i32, y: i32, sx: i32, sy: i32) { unsafe {
     if (*bm).fl_udraw == 0 {
         return;
     }
@@ -46,13 +46,13 @@ pub unsafe fn bms_send(bm: *mut BMSCR, x: i32, y: i32, sx: i32, sy: i32) {
         (*bm).hdc,
         x,
         y,
-        SRCCOPY as u32,
+        SRCCOPY,
     );
     if let Some(opal) = opal {
         SelectPalette(hdc, opal, 0);
     }
     ReleaseDC((*bm).hwnd, hdc);
-}
+}}
 
 #[macro_export]
 macro_rules! code_next {
