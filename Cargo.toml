@@ -10,7 +10,6 @@ crate-type = ["cdylib"]
 [profile.dev]
 lto = true
 
-
 [workspace.dependencies]
 hsp3sdk = { version = "3.7.0", path = "hsp3sdk", default-features = false }
 

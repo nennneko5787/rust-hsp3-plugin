@@ -1,1 +1,6 @@
 /target
+
+*.ax
+packfile
+/example/test.txt
+*.dll

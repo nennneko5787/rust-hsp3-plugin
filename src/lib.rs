@@ -200,7 +200,7 @@ pub extern "C" fn eventfunc(event: i32, _: i32, _: i32, prm3: *mut ::core::ffi::
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn DllMain(_: HINSTANCE, _: u32, _: *mut ::core::ffi::c_void) -> BOOL {
+pub extern "system" fn DllMain(_: HINSTANCE, _: u32, _: *mut ::core::ffi::c_void) -> BOOL {
     1
 }
 
